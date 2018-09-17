@@ -162,8 +162,8 @@
 <style>
   .sideBar{
     border-top: 1px solid #eeeeee;
-    width: 280px;
-    height: 100%;
+    width: 250px;
+    height: calc(100% - 80px);
     position: absolute;
     top: 80px;
     left: 0;

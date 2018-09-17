@@ -85,6 +85,7 @@ export default {
   body{
     margin: $margin;
   }
+
   .bigDiv{
     position: absolute;
     top:0;

@@ -13,6 +13,7 @@
 <script>
   import vHeader from '../common/header.vue'
   import vSideBar from  '../common/sideBar.vue'
+  import jsCut from '../../static/js/jsCut.js'
     export default {
       components:{
         'vHeader':vHeader,

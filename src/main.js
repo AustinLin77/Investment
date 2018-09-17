@@ -8,7 +8,10 @@ import $ from 'jquery'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import './assets/icon/iconfont.css'
-Vue.config.productionTip = false
+import echarts from 'echarts'
+
+Vue.prototype.echarts = echarts;
+Vue.config.productionTip = false;
 Vue.use(ElementUI);
 /* eslint-disable no-new */
 new Vue({

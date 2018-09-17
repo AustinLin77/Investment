@@ -3,7 +3,7 @@
       <div class="innerHead">
         <div class="starter">
           <img src="../assets/icon512.png" class="myPic">
-          <span class="title">欣旺达金融管理系统</span>
+          <span class="title">xxx金融管理系统</span>
         </div>
         <div class="ender">
           <div class="mail">
@@ -21,13 +21,13 @@
             <img src="../assets/mypic.jpg" class="myPic">
           </div>
           <div class="myDrop">
-            <el-dropdown>
+            <el-dropdown @command="handleCommand">
               <el-button type="primary" >
                 林国铿<i class="el-icon-arrow-down el-icon--right"></i>
               </el-button>
               <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item>修改资料</el-dropdown-item>
-                <el-dropdown-item>更该账号/注销</el-dropdown-item>
+                <el-dropdown-item command="a">修改资料</el-dropdown-item>
+                <el-dropdown-item command="b">更该账号/注销</el-dropdown-item>
               </el-dropdown-menu>
             </el-dropdown>
           </div>
@@ -40,19 +40,39 @@
 </template>
 
 <script>
-    export default {
-        data: function () {
-            return {}
-        },
-        created() {
+  export default {
+    data: function () {
+      return {}
+    },
+    created() {
 
-        },
-        mounted() {
+    },
+    mounted() {
 
-        },
-        methods: {}
-
-    }
+    },
+    methods: {
+      handleCommand(command) {
+        if(command==='a'){
+          this.editFile()
+        }else{
+          this.logOut()
+        }
+      },
+      logOut(){
+        this.$confirm('您确定要退出登录吗?', '温馨提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          this.$router.push('/login')
+        }).catch(() => {
+        });
+      }
+    },
+     editFile(){
+       this.$router.push('/editInfomation')
+     }
+  }
 </script>
 <style scoped>
   .head{
@@ -67,7 +87,7 @@
     height: 100%;
     display: flex;
     align-items: center;
-    padding: 0 25px 0 25px
+    padding: 0 25px 0 45px
   }
   .starter{
     width: 240px;
