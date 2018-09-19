@@ -127,6 +127,7 @@
 //
 //    animation();
 //  }
+import { mapMutations } from 'vuex'
   export default {
     data :function() {
       return {
@@ -147,32 +148,9 @@
       };
     },
     mounted(){
-      let vm=this;
-//      this.getSession()
+
     },
     methods:{
-//      getSession(){
-//        let vm = this;
-//        $.ajax({
-//          url: 'http://localhost:3000',
-//          dataType: "json",
-//          data: {
-////            username:vm.ruleForm.name,
-////            password:vm.ruleForm.desc
-//          },
-//          type: "get",
-//          success: function (res) {
-//            console.log(res);
-//            if(res.statusCode==1){
-//              console.log("需要登录")
-//            }else{
-//              console.log("用户已登录")
-//            }
-//          },
-//          error: function () {
-//          }
-//        });
-//      },
       //表单提交函数
       submitForm() {
         let vm = this;
@@ -188,6 +166,8 @@
           success: function (res) {
             console.log(res);
             if(res.statusText==='登录成功'){
+              vm.storeUserName(vm.ruleForm.name);
+              localStorage.setItem("username",vm.ruleForm.name)
               vm.$router.push('/home')
             }
           },
@@ -214,7 +194,10 @@
           document.getElementById('passwordIcon').setAttribute('class','icon-biyanjing');
           document.getElementById('password').setAttribute('type','password')
         }
-      }
+      },
+      ...mapMutations([
+        'storeUserName',
+      ]),
     }
   }
 </script>

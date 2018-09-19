@@ -98,4 +98,11 @@ export default {
     background-color:  #545c64;
     border-color:  #545c64;
   }
+  .content .el-checkbox{
+    width:100%;
+    margin-left: 30px;
+  }
+ /*.content .el-form-item__label{*/
+   /*text-align: center;*/
+ /*}*/
 </style>

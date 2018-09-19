@@ -162,7 +162,7 @@
 <style>
   .sideBar{
     border-top: 1px solid #eeeeee;
-    width: 250px;
+    width: 200px;
     height: calc(100% - 80px);
     position: absolute;
     top: 80px;

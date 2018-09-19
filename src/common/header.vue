@@ -23,7 +23,7 @@
           <div class="myDrop">
             <el-dropdown @command="handleCommand">
               <el-button type="primary" >
-                林国铿<i class="el-icon-arrow-down el-icon--right"></i>
+               {{username}}<i class="el-icon-arrow-down el-icon--right"></i>
               </el-button>
               <el-dropdown-menu slot="dropdown">
                 <el-dropdown-item command="a">修改资料</el-dropdown-item>
@@ -31,34 +31,33 @@
               </el-dropdown-menu>
             </el-dropdown>
           </div>
-
         </div>
-
       </div>
-
     </div>
 </template>
 
 <script>
   export default {
     data: function () {
-      return {}
+      return {
+        username: ''
+      }
     },
     created() {
 
     },
     mounted() {
-
+      this.username = localStorage.getItem("username")
     },
     methods: {
       handleCommand(command) {
-        if(command==='a'){
+        if (command === 'a') {
           this.editFile()
-        }else{
+        } else {
           this.logOut()
         }
       },
-      logOut(){
+      logOut() {
         this.$confirm('您确定要退出登录吗?', '温馨提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
@@ -67,11 +66,12 @@
           this.$router.push('/login')
         }).catch(() => {
         });
+      },
+
+      editFile() {
+        this.$router.push('/editInfomation')
       }
-    },
-     editFile(){
-       this.$router.push('/editInfomation')
-     }
+    }
   }
 </script>
 <style scoped>
