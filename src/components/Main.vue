@@ -6,11 +6,14 @@
         <el-breadcrumb-item  >首页</el-breadcrumb-item>
       </el-breadcrumb>
     </div>
-    <div class="itemList">
-      <div class="item" v-for="i in itemList" :style="{ backgroundColor: i.color}" >
-        <div class="value">{{i.value}}</div>
-        <div class="title">{{i.title}}</div>
-      </div>
+    <div class="itemList" >
+      <a v-for="i in itemList" class="item">
+        <div class="item"  :style="{ backgroundColor: i.color}" >
+          <div class="value">{{i.value}}</div>
+          <div class="title">{{i.title}}</div>
+        </div>
+      </a>
+
     </div>
     <div class="chart">
       <div class="area">
@@ -486,6 +489,11 @@
       }
     }
   }
-
+  a:hover{
+    transform: translateY(-6px);
+    box-shadow: 0 26px 40px -24px rgba(0, 36, 100, 0.3);
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
 </style>
 

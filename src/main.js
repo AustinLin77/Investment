@@ -10,7 +10,9 @@ import 'element-ui/lib/theme-chalk/index.css';
 import './assets/icon/iconfont.css'
 import echarts from 'echarts'
 import store from './store/store.js'
+import api from './api'
 Vue.prototype.echarts = echarts;
+Vue.prototype.api = api;
 Vue.config.productionTip = false;
 Vue.use(ElementUI);
 /* eslint-disable no-new */

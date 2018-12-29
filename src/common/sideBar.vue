@@ -78,7 +78,7 @@
                   children:[
                     {
                       title:'资金流水',
-                      index:'/fundDiretion',
+                      index:'/fundDirection',
                     },
                     {
                       title:'支付单据',

@@ -7,7 +7,7 @@ import UserList from '@/components/UserList'
 import InfoList from '@/components/InfoList'
 import PersonalInfomation from '@/components/PersonalInfomation'
 import EditInfomation from '@/components/EditInfomation'
-import FundDiretion from '@/components/FundDiretion'
+import FundDirection from '@/components/FundDirection'
 import PayEvidence from '@/components/PayEvidence'
 import ProvinceInvest from '@/components/ProvinceInvest'
 import AreaInvest from '@/components/AreaInvest'
@@ -17,6 +17,7 @@ import LookArticle from '@/components/LookArticle'
 import InvestSpread from '@/components/InvestSpread'
 import ProjectSpread from '@/components/ProjectSpread'
 import FundSpread from '@/components/FundSpread'
+import Pagdiliver from '@/components/pagdiliver'
 Vue.use(Router);
 
 export default new Router({
@@ -24,6 +25,11 @@ export default new Router({
     {
       path: '/',
       redirect:'/login'
+    },
+    {
+      path: '/pag',
+      name: 'pag',
+      component: Pagdiliver
     },
     {
       path: '/login',
@@ -66,9 +72,9 @@ export default new Router({
           component: EditInfomation,
         },
         {
-          path: '/fundDiretion',
-          name: 'fundDiretion',
-          component: FundDiretion,
+          path: '/fundDirection',
+          name: 'fundDirection',
+          component: FundDirection,
         },
         {
           path: '/payEvidence',

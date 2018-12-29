@@ -29,7 +29,7 @@ export default {
             success: function (res) {
               console.log(res);
               if(res.statusCode==1){
-                vm.$message("请登录后再操作")
+                vm.$message("请登录后再操作");
                 vm.$router.push('/')
               }else{
                 return
@@ -60,9 +60,6 @@ export default {
 //          vm.$message("请登录后再操作")
 //
 //            vm.$router.push('/login')
-//
-//
-//
 //        }else{
 //          return
 //        }
@@ -70,9 +67,7 @@ export default {
 //      error: function () {
 //      }
 //    });
-//
-//  }
-
+//}
 }
 
 
@@ -101,6 +96,12 @@ export default {
   .content .el-checkbox{
     width:100%;
     margin-left: 30px;
+  }
+  .myTable .cell{
+    text-align: center;
+  }
+  .myTable .el-checkbox{
+    margin-left: 0;
   }
  /*.content .el-form-item__label{*/
    /*text-align: center;*/

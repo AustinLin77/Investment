@@ -2,7 +2,7 @@
   <div>
     <vHeader></vHeader>
     <v-side></v-side>
-    <div class="content">
+    <div class="contenta">
       <transition name="fade" >
         <router-view></router-view>
       </transition>

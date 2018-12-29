@@ -131,6 +131,7 @@ import { mapMutations } from 'vuex'
   export default {
     data :function() {
       return {
+        ip:'',
         iconStatus:false,
         ruleForm: {
           name: '',
@@ -148,9 +149,19 @@ import { mapMutations } from 'vuex'
       };
     },
     mounted(){
+      this.getIp();
 
     },
     methods:{
+      //获取公网IP
+      getIp(){
+        let vm =this;
+        vm.api(vm,'get','http://httpbin.org/ip',{},function (res) {
+          console.log(res);
+          vm.ip=res.origin;
+          console.log(vm.ip);
+        })
+      },
       //表单提交函数
       submitForm() {
         let vm = this;
@@ -158,6 +169,7 @@ import { mapMutations } from 'vuex'
           url: 'http://localhost:3000/users/login',
           dataType: "json",
           data: {
+            ip:vm.ip,
             username:vm.ruleForm.name,
             password:vm.ruleForm.desc
           },
@@ -167,11 +179,15 @@ import { mapMutations } from 'vuex'
             console.log(res);
             if(res.statusText==='登录成功'){
               vm.storeUserName(vm.ruleForm.name);
-              localStorage.setItem("username",vm.ruleForm.name)
+              localStorage.setItem("username",vm.ruleForm.name);
+              localStorage.setItem("password",vm.ruleForm.desc);
+              localStorage.setItem("id",res.id);
+              localStorage.setItem("uId",res.uId);
               vm.$router.push('/home')
             }
           },
           error: function () {
+            vm.$message("系统繁忙")
           }
         });
       },
@@ -206,7 +222,7 @@ import { mapMutations } from 'vuex'
 <style scoped lang="scss">
   .topcn{
     width: 100%;
-    top:500px;
+    top:40%;
     left: 0;
     position:absolute;
     z-index:20;
@@ -223,11 +239,11 @@ import { mapMutations } from 'vuex'
     }
   }
   .title{
-    height: 80px;
+    height: 6.1vw;
     line-height: 80px;
     text-align: center;
     width: 100%;
-    top:400px;
+    top:30%;
     left: 0;
     position:absolute;
     z-index:20;
