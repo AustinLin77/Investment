@@ -5,12 +5,23 @@
       <el-breadcrumb separator-class="el-icon-arrow-right" class="breadIn">
         <el-breadcrumb-item :to="{ path: '/main' }">首页</el-breadcrumb-item>
         <el-breadcrumb-item :to="{ path: '/areaInvest' }">投资管理</el-breadcrumb-item>
-        <el-breadcrumb-item  >省份投资</el-breadcrumb-item>
+        <el-breadcrumb-item  >区域投资</el-breadcrumb-item>
       </el-breadcrumb>
     </div>
-    <div class="toolBar">
-      <el-button type="primary" style="margin-left: 2%" >导出excel</el-button>
-    </div>
+    <el-tabs type="border-card">
+      <el-tab-pane label="用户管理" >
+
+      </el-tab-pane>
+      <el-tab-pane label="配置管理">
+
+      </el-tab-pane>
+      <el-tab-pane label="角色管理">
+
+      </el-tab-pane>
+      <el-tab-pane label="定时任务补偿">
+
+      </el-tab-pane>
+    </el-tabs>
   </div>
 </template>
 

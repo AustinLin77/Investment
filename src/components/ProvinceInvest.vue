@@ -9,7 +9,7 @@
       </el-breadcrumb>
     </div>
     <div class="toolBar">
-      <el-button type="primary" class="myButton" >导出excel</el-button>
+      <el-button type="primary" class="myButton" @click="export2Excel" >导出excel</el-button>
     </div>
     <div class="myTable">
       <el-table
@@ -17,41 +17,80 @@
         ref="filterTable"
         :data="tableData"
         style="width: 100%"
-        @selection-change="handleSelectionChange">
+       >
         <el-table-column
+          fixed="left"
           type="index"
           header-align="center"
           label="序号"
           width="130">
         </el-table-column>
         <el-table-column
-          prop="description"
+          prop="provinces"
           header-align="center"
-          label="收支描述"
-          width="180">
+          label="省份"
+          width="150">
         </el-table-column>
         <el-table-column
-          prop="orderPayment"
-          label="订单金额"
+          prop="orderMoney"
+          label="投资总额"
           sortable
           width="180"
-          column-key="date"
+
         >
           <template slot-scope="scope">
-            <span style="color:deeppink">{{ scope.row.orderPayment }}</span>
+            <span style="color:deeppink">{{ scope.row.orderMoney }}</span>
           </template>
         </el-table-column>
         <el-table-column
-          prop="income"
+          prop="incomeMoney"
           label="收益金额"
           sortable
           width="180"
           column-key="date"
         >
           <template slot-scope="scope">
-            <span style="color:darkcyan">{{ scope.row.income }}</span>
+            <span style="color:darkcyan">{{ scope.row.incomeMoney }}</span>
           </template>
         </el-table-column>
+        <el-table-column
+          prop="payType"
+          label="主要投资项目"
+          width="180">
+          <template slot-scope="scope">
+            <el-tag
+              type="primary"
+              disable-transitions>
+              {{scope.row.payType}}
+            </el-tag>
+          </template>
+        </el-table-column>
+        <el-table-column
+          prop="orderPeriod"
+          header-align="center"
+          label="投资周期"
+          width="180">
+        </el-table-column>
+        <el-table-column
+          prop="orderPersonConunt"
+          header-align="center"
+          label="投资人数"
+          width="150">
+        </el-table-column>
+        <el-table-column
+          prop="orderYearRate"
+          header-align="center"
+          label="投资年变化率"
+          width="150">
+        </el-table-column>
+        <el-table-column
+          fixed="right"
+          prop="remarks"
+          header-align="center"
+          label="备注"
+          width="180">
+        </el-table-column>
+
       </el-table>
     </div>
   </div>
@@ -60,16 +99,43 @@
 <script>
   export default {
     data: function () {
-      return {}
+      return {
+        tableData:[]
+      }
     },
     created() {
 
     },
     mounted() {
-
+       let vm = this;
+       this.getData()
     },
-    methods: {}
-
+    methods: {
+      getData(){
+        let vm = this;
+        vm.api(vm,'get','http://localhost:3000/users/findProvinceInvestmentList',{},function (res) {
+          console.log(res);
+          if(res.success=='true'){
+            vm.tableData=res.data;
+          }else{
+            vm.$message("暂无数据")
+          }
+        })
+      },
+      export2Excel() {
+        require.ensure([], () => {
+          const { export_json_to_excel } = require('../vendor/Export2Excel');
+          const tHeader = ['序号','省份','投资总额','收益金额','主要投资项目','投资周期','投资人数','投资年变化率','备注'];
+          const filterVal = ['index', 'provinces', 'orderMoney', 'incomeMoney', 'payType', 'orderPeriod','orderPersonConunt','orderYearRate','remarks' ];
+          const list = this.tableData;
+          const data = this.formatJson(filterVal, list);
+          export_json_to_excel(tHeader, data, '商品管理列表');
+        })
+      },
+      formatJson(filterVal, jsonData) {
+        return jsonData.map(v => filterVal.map(j => v[j]))
+      },
+    }
   }
 </script>
 
