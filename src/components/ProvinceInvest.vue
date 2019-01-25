@@ -13,10 +13,12 @@
     </div>
     <div class="myTable">
       <el-table
+        v-loading="haveData"
         border
         ref="filterTable"
         :data="tableData"
-        style="width: 100%"
+        maxHeight="1000"
+
        >
         <el-table-column
           fixed="left"
@@ -84,11 +86,11 @@
           width="150">
         </el-table-column>
         <el-table-column
-          fixed="right"
+
           prop="remarks"
           header-align="center"
           label="备注"
-          width="180">
+          >
         </el-table-column>
 
       </el-table>
@@ -100,7 +102,8 @@
   export default {
     data: function () {
       return {
-        tableData:[]
+        tableData:[],
+        haveData:true
       }
     },
     created() {
@@ -116,6 +119,9 @@
         vm.api(vm,'get','http://localhost:3000/users/findProvinceInvestmentList',{},function (res) {
           console.log(res);
           if(res.success=='true'){
+            setTimeout(()=>{
+              vm.haveData=!vm.haveData;
+            },2000);
             vm.tableData=res.data;
           }else{
             vm.$message("暂无数据")
@@ -139,7 +145,7 @@
   }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .content {
     position: absolute;
     top: 80px;
@@ -164,14 +170,19 @@
     .toolBar {
       height: 5%;
       min-height: 50px;
-      margin-top: 1%;
+      margin-top: 0.5%;
+      margin-bottom: 0.5%;
       display: flex;
       align-items: center;
       width: 100%;
       .myButton{
         height: 80%;
-        margin-left: 2%;
+        margin-left: 1%;
       }
+    }
+    .myTable{
+      margin:1%;
+      border:1px solid #eeeeee;
     }
   }
 </style>

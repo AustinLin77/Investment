@@ -88,6 +88,8 @@ export default {
     width: $width;
     height: $height;
     background-image: url("./assets/timg.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
   }
   .myDrop .el-button--primary{
     background-color:  #545c64;

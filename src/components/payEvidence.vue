@@ -22,6 +22,7 @@
       </div>
       <div class="myTable">
         <el-table
+          v-loading="haveData"
           border
           ref="filterTable"
           :data="tableData"
@@ -34,7 +35,7 @@
           <el-table-column
             prop="paymentNumber"
             label="支付单号"
-            width="180">
+            width="200">
             <template slot-scope="scope">
               <span style="color:#0066cc">{{ scope.row.paymentNumber }}</span>
             </template>
@@ -64,7 +65,7 @@
           <el-table-column
             prop="project"
             label="支付项目"
-            width="100"
+            width="180"
             :filters="[{ text: '储蓄', value: '储蓄' }, { text: '股票', value: '股票' }, { text: '转账', value: '转账' }]"
             :filter-method="filterProject"
             filter-placement="bottom-end">
@@ -78,7 +79,7 @@
             prop="time"
             label="下单时间"
             sortable
-            width="180"
+            width="210"
             column-key="date"
           >
             <template slot-scope="scope">
@@ -89,7 +90,7 @@
           <el-table-column
             prop="orderStatus"
             label="支付状态"
-            width="100"
+            width="150"
             :filters="[{ text: '支付成功', value: '支付成功' }, { text: '支付失败', value: '支付失败' }]"
             :filter-method="filterTag"
             filter-placement="bottom-end">
@@ -102,7 +103,7 @@
           <el-table-column
             prop="remark"
             label="备注"
-            width="180">
+            >
           </el-table-column>
         </el-table>
       </div>
@@ -129,7 +130,8 @@
               pageNum:1,
               disabled_deleteButton:true,
               search:'',
-              tableData: []
+              tableData: [],
+              haveData:true
             }
         },
         created() {
@@ -213,6 +215,7 @@
             vm.api(vm,'get','http://localhost:3000/users/findUserPayEvidence',{id:vm.id,pageNum:vm.pageNum,pageSize:2},function (res) {
               console.log(res);
               if(res.success=='true'){
+                vm.haveData=!vm.haveData;
                 vm.tableData=res.data.data;
                 vm.total=res.data.totalCount;
               }else{
@@ -224,7 +227,7 @@
 
     }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
   .content {
     position: absolute;
     top: 80px;
@@ -262,7 +265,8 @@
       }
     }
     .myTable{
-      padding:1%;
+     margin:1%;
+      border:1px solid #eeeeee;
     }
   }
 </style>

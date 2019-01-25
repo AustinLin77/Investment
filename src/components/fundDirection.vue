@@ -364,7 +364,7 @@
         }
     }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
   .content {
     position: absolute;
     top: 80px;
