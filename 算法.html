@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body style="width: 100%;height: 100%">
+  <div style="background-color: #cccccc;position: absolute;top: 0;left: 0;height: 100%;width: 200px">
+
+  </div>
+  <div style="background-color: red;position: absolute;top: 0;left: 200px;height:100%;width: calc(100% - 400px)">
+
+  </div>
+  <div style="background-color: #eeeeee;position: absolute;top: 0;right: 0;height: 100%;width: 200px">
+
+  </div>
+<script>
+  var str = "cbaacbcb";
+  var arr = str.split('');
+
+  // 各元素以及对应出现的次数
+  var res = arr.reduce(function (obj, key, index, arr) {
+    if(obj.hasOwnProperty(key)) {
+      obj[key] ++;
+    } else {
+      obj[key] = 1;
+    }
+    return obj;
+  }, {});
+console.log(res)
+  // 次数组成的数组
+  var indexArr = [];
+
+  for(var prop in res) {
+    console.log(prop)
+    indexArr.push(res[prop]);
+  }
+console.log(indexArr)
+  // 找出出现次数最少的数
+  var minTimes = Math.min(...indexArr);
+console.log(minTimes)
+  // 出现次数最少元素的数组
+  var eleArr = [];
+
+  for(var p in res) {
+    if(res[p] === minTimes) {
+      eleArr.push(p);
+    }
+  }
+
+  console.log(eleArr[0])
+</script>
+</body>
+</html>

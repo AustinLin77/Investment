@@ -31,7 +31,9 @@
 </template>
 
 <script>
+
     export default {
+
         data: function () {
             return {
               itemList:[
@@ -392,6 +394,14 @@
                   }
                 }
               ]})
+            //窗口拖动 图标重绘
+            $(window).resize(function(){
+              firstChart.resize();
+              secondChart.resize();
+              thirdChart.resize();
+              fourthChart.resize();
+              fifthChart.resize();
+            });
           },
           getData(count){
             var nameList = [
@@ -426,7 +436,8 @@
               }
               return name.join('');
             }
-          }
+          },
+
         }
 
     }
